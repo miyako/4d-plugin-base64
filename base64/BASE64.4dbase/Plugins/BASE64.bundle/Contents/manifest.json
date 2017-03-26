@@ -1,0 +1,1 @@
+﻿{"name":"BASE64","id":20000,"commands":[{"theme":"BASE64","syntax":"BLOB to base64(&O):T"},{"theme":"BASE64","syntax":"BLOB from base64(&T):O"},{"theme":"BASE64","syntax":"BLOB to hex(&O):T"},{"theme":"BASE64","syntax":"BLOB from hex(&T):O"}]}
