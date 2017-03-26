@@ -1,6 +1,8 @@
 # 4d-plugin-base64
 Convert BLOB to text (hex or base64)
 
+Unlike the native command, a new line ``\n`` is inserted every 72 characters.
+
 ### Platform
 
 | carbon | cocoa | win32 | win64 |
