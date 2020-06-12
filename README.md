@@ -15,7 +15,7 @@ Unlike the native command, a new line ``\n`` is inserted every 72 characters.
 
 ## Syntax
 
-```
+```4d
 b64:=BLOB to base64 (data)
 hex:=BLOB to hex (data)
 ```
@@ -26,7 +26,7 @@ data|BLOB|In
 b64|TEXT|Out
 hex|TEXT|Out
 
-```
+```4d
 data:=BLOB from base64 (b64)
 data:=BLOB from hex (hex)
 ```
