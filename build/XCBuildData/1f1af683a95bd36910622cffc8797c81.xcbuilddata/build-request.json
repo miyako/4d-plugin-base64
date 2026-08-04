@@ -9,7 +9,7 @@
       "guid" : "8be28f87d366e24f2932f2589c5a95f5635cb1bd3e23e689eceb59203994f048"
     }
   ],
-  "containerPath" : "/Users/miyako/Documents/GitHub/4d-plugin-base64/base64/BASE64.xcodeproj",
+  "containerPath" : "/Users/miyako/Documents/GitHub/4d-plugin-base64/BASE64.xcodeproj",
   "continueBuildingAfterErrors" : true,
   "dependencyScope" : "workspace",
   "enableIndexBuildArena" : false,
@@ -34,9 +34,9 @@
       "buildIntermediatesPath" : "",
       "buildProductsPath" : "",
       "derivedDataPath" : "/Users/miyako/Library/Developer/Xcode/DerivedData",
-      "indexDataStoreFolderPath" : "/Users/miyako/Library/Developer/Xcode/DerivedData/BASE64-atormlftmmiymufzrauktkezhbhd/Index.noindex/DataStore",
+      "indexDataStoreFolderPath" : "/Users/miyako/Library/Developer/Xcode/DerivedData/BASE64-gqwvdpxttjuttkdywriwicgwvihs/Index.noindex/DataStore",
       "indexEnableDataStore" : true,
-      "indexPCHPath" : "/Users/miyako/Library/Developer/Xcode/DerivedData/BASE64-atormlftmmiymufzrauktkezhbhd/Index.noindex/PrecompiledHeaders",
+      "indexPCHPath" : "/Users/miyako/Library/Developer/Xcode/DerivedData/BASE64-gqwvdpxttjuttkdywriwicgwvihs/Index.noindex/PrecompiledHeaders",
       "pchPath" : ""
     },
     "configurationName" : "Deployment",
@@ -44,15 +44,14 @@
       "synthesized" : {
         "table" : {
           "ENABLE_PREVIEWS" : "NO",
-          "ENABLE_XOJIT_PREVIEWS" : "NO"
+          "ENABLE_XOJIT_PREVIEWS" : "YES"
         }
       }
     }
   },
-  "qos" : "default",
   "schemeCommand" : "launch",
   "showNonLoggedProgress" : true,
-  "useDryRun" : true,
+  "useDryRun" : false,
   "useImplicitDependencies" : true,
   "useLegacyBuildLocations" : false,
   "useParallelTargets" : true
