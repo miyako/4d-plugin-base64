@@ -11,6 +11,29 @@
 #ifndef __4DPLUGINAPI__
 #define __4DPLUGINAPI__
 
+// Project-specific patch: force WIN32_LEAN_AND_MEAN before any other header
+// in this translation unit can pull in <windows.h>. Without this, if
+// <windows.h> is included (directly or transitively, e.g. via Flags.h/
+// PublicTypes.h) before the winsock2-first block below runs, it drags in
+// the legacy <winsock.h>, which sets the _WINDOWS_ guard early and causes
+// the "#ifndef _WINDOWS_" block further down to be skipped entirely --
+// silently dropping winsock2.h/ws2tcpip.h/windows.h/iphlpapi.h/icmpapi.h
+// from the translation unit. WIN32_LEAN_AND_MEAN stops <windows.h> from
+// pulling in the legacy Winsock headers at all, so the outcome no longer
+// depends on include order.
+// Residual risk: WIN32_LEAN_AND_MEAN also strips some other <windows.h>
+// subsystems (Cryptography, DDE, RPC, some Shell APIs) that this project
+// doesn't appear to use, but that hasn't been verified against every header
+// in this SDK, and this fix has not been compile-tested in this environment.
+// NOTE: not gated on VERSIONWIN -- that macro is defined inside Flags.h,
+// which is only included *after* this point, so a "#if VERSIONWIN" guard
+// here would always evaluate false and silently no-op the fix. Defining
+// WIN32_LEAN_AND_MEAN unconditionally is harmless on non-Windows platforms,
+// since <windows.h> is never included there regardless.
+#ifndef WIN32_LEAN_AND_MEAN
+#define WIN32_LEAN_AND_MEAN
+#endif
+
 #include "Flags.h"
 #include "PublicTypes.h"
 
@@ -36,11 +59,65 @@
 #include "ARRAY_TIME.h"
 #include "ARRAY_DATE.h"
 
-//some external libraries assume first load; include this file after them 
+//some external libraries assume first load; include this file after them
+//
+// Project-specific patch (round 2): the previous fix here (defining
+// WIN32_LEAN_AND_MEAN up top) had zero effect on the actual CI failure --
+// confirmed by diffing the built commit's error output against the prior
+// run's, byte-for-byte identical. That ruled out "windows.h processed
+// before winsock2.h" as the mechanism, since WIN32_LEAN_AND_MEAN only
+// changes what <windows.h> pulls in once it's included -- it can't matter
+// if this block is being skipped for a different reason.
+//
+// The likely real cause: Flags.h and/or PublicTypes.h (included just
+// above, neither provided alongside this SDK so this isn't fully
+// confirmed) probably define _WINDOWS_ themselves as a plain platform
+// flag, without ever actually including <windows.h>. That would make the
+// "#ifndef _WINDOWS_" guard below read as "already loaded" and skip this
+// entire block outright -- meaning winsock2.h/ws2tcpip.h/windows.h/
+// iphlpapi.h/icmpapi.h are never included in this translation unit at
+// all, which matches every symptom (identifiers missing, no redefinition
+// errors, no file-not-found errors).
+//
+// Fix: stop keying this decision off _WINDOWS_, a macro this SDK doesn't
+// own and evidently can't rely on here. Use a private sentinel instead so
+// this block's own state is tracked by this header, not by whatever
+// Flags.h/PublicTypes.h do with _WINDOWS_.
 #if VERSIONWIN
-#ifndef _WINDOWS_
+#ifndef __4DPLUGINAPI_WINSOCK_LOADED__
+#define __4DPLUGINAPI_WINSOCK_LOADED__
+//need to load winsock2 before windows
+//BSD wrappers
+#define close closesocket
+#define TickCount GetTickCount
+#define getpid GetCurrentProcessId
+#include <winsock2.h>
+
+#include <ws2tcpip.h>
+#pragma comment(lib, "ws2_32.lib")
+
 #include <windows.h>
+#include <iphlpapi.h>
+#include <icmpapi.h>
+
+#pragma comment(lib, "iphlpapi.lib")
+#include <time.h>
+#include <mmsystem.h>
+#pragma comment(lib, "winmm.lib")
 #endif
+#else
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <netinet/ip.h>
+#include <netinet/ip_icmp.h>
+#include <netdb.h>
+#include <arpa/inet.h>
+#include <ifaddrs.h>
+#include <net/if.h>
+#define SOCKET int
+#define SOCKET_ERROR (-1)
+#define INVALID_SOCKET (SOCKET)(~0)
 #endif
 
 #ifdef __cplusplus
