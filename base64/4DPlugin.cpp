@@ -60,8 +60,16 @@ void BLOB_to_base64(sLONG_PTR *pResult, PackagePtr pParams)
 	C_BLOB Param1;
 	C_TEXT returnValue;
 
-	Param1.fromParamAtIndex(pParams, 1);
-	Param1.toB64Text(&returnValue);
+	try
+	{
+		Param1.fromParamAtIndex(pParams, 1);
+		Param1.toB64Text(&returnValue);
+	}
+	catch(...)
+	{
+		// returnValue stays at its default-constructed (empty) state;
+		// fall through so 4D still gets a return value and doesn't hang.
+	}
 
 	returnValue.setReturn(pResult);
 }
@@ -71,8 +79,15 @@ void BLOB_from_base64(sLONG_PTR *pResult, PackagePtr pParams)
 	C_TEXT Param1;
 	C_BLOB returnValue;
 
-	Param1.fromParamAtIndex(pParams, 1);
-	returnValue.fromB64Text(&Param1);
+	try
+	{
+		Param1.fromParamAtIndex(pParams, 1);
+		returnValue.fromB64Text(&Param1);
+	}
+	catch(...)
+	{
+		// returnValue stays empty; still return it below.
+	}
 
 	returnValue.setReturn(pResult);
 }
@@ -82,8 +97,15 @@ void BLOB_to_hex(sLONG_PTR *pResult, PackagePtr pParams)
 	C_BLOB Param1;
 	C_TEXT returnValue;
 
-	Param1.fromParamAtIndex(pParams, 1);
-	Param1.toHexText(&returnValue);
+	try
+	{
+		Param1.fromParamAtIndex(pParams, 1);
+		Param1.toHexText(&returnValue);
+	}
+	catch(...)
+	{
+		// returnValue stays empty; still return it below.
+	}
 
 	returnValue.setReturn(pResult);
 }
@@ -93,8 +115,15 @@ void BLOB_from_hex(sLONG_PTR *pResult, PackagePtr pParams)
 	C_TEXT Param1;
 	C_BLOB returnValue;
 
-	Param1.fromParamAtIndex(pParams, 1);
-	returnValue.fromHexText(&Param1);
+	try
+	{
+		Param1.fromParamAtIndex(pParams, 1);
+		returnValue.fromHexText(&Param1);
+	}
+	catch(...)
+	{
+		// returnValue stays empty; still return it below.
+	}
 
 	returnValue.setReturn(pResult);
 }

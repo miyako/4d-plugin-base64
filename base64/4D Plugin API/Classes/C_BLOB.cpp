@@ -256,7 +256,16 @@ void CBytes::toB64Text(C_TEXT *b64)
 	const ::std::size_t binlen = this->_CBytes.size();
 	
 	::std::size_t olen = (((binlen + 2) / 3) * 4);
-	olen += olen / 72; /* line feeds */
+
+	// Reserve newline slots based on how many characters the main loop below
+	// will *actually* emit before padding (line_len is only ever incremented
+	// for those), not on the padded slot count above. Reserving off the
+	// padded count can overshoot the true number of line breaks whenever
+	// the padded total crosses a 72-char boundary that the real data count
+	// doesn't, leaving one reserved-but-unwritten slot that defaults to '='
+	// -- i.e. a stray extra trailing padding character in the output.
+	::std::size_t realChars = (binlen * 8) / 6; /* chars from the main while-loop, excludes the final leftover char */
+	olen += realChars / 72; /* line feeds actually inserted by the loop below */
 	
 	// Use = signs so the end is properly padded.
 	CUTF8String retval(olen, '=');
