@@ -59,7 +59,7 @@
 		D134D4AB1A030B7A008D14EF /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = ..;
+			dstPath = "";
 			dstSubfolderSpec = 7;
 			files = (
 				D134D4AC1A030BA0008D14EF /* manifest.json in CopyFiles */,
@@ -462,6 +462,7 @@
 				INSTALL_PATH = "$(HOME)/Library/Bundles";
 				LIBRARY_SEARCH_PATHS = "";
 				LIBRARY_STYLE = Bundle;
+				MARKETING_VERSION = 2.0.0;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
 				OTHER_REZFLAGS = "";
@@ -504,6 +505,7 @@
 				INSTALL_PATH = "$(HOME)/Library/Bundles";
 				LIBRARY_SEARCH_PATHS = "";
 				LIBRARY_STYLE = Bundle;
+				MARKETING_VERSION = 2.0.0;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
 				OTHER_REZFLAGS = "";
@@ -544,6 +546,7 @@
 				INSTALL_PATH = "$(HOME)/Library/Bundles";
 				LIBRARY_SEARCH_PATHS = "";
 				LIBRARY_STYLE = Bundle;
+				MARKETING_VERSION = 2.0.0;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
 				OTHER_REZFLAGS = "";
@@ -573,7 +576,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				OBJROOT = "$(SRCROOT)/build";
 				SDKROOT = macosx;
-				SYMROOT = "$(SRCROOT)/$(PRODUCT_NAME).4dbase/Plugins";
+				SYMROOT = "$(SRCROOT)/BASE64.4dbase/Plugins";
 			};
 			name = Development;
 		};
@@ -590,7 +593,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				OBJROOT = "$(SRCROOT)/build";
 				SDKROOT = macosx;
-				SYMROOT = "$(SRCROOT)/$(PRODUCT_NAME).4dbase/Plugins";
+				SYMROOT = "$(SRCROOT)/BASE64.4dbase/Plugins";
 			};
 			name = Deployment;
 		};
@@ -605,7 +608,7 @@
 				GCC_VERSION = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				SDKROOT = macosx;
-				SYMROOT = "$(SRCROOT)/$(PRODUCT_NAME).4dbase/Plugins";
+				SYMROOT = "$(SRCROOT)/BASE64.4dbase/Plugins";
 			};
 			name = Default;
 		};
