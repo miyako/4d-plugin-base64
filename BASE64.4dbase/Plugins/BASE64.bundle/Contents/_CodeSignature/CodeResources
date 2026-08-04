@@ -109,18 +109,13 @@
 		<data>
 		UbZYnK1QdI2HA5cO0/aNT2a+ucQ=
 		</data>
+		<key>Resources/manifest.json</key>
+		<data>
+		j42TziOiHUNjeGxW36AQ/376XRE=
+		</data>
 	</dict>
 	<key>files2</key>
 	<dict>
-		<key>MacOS/BASE64.html</key>
-		<dict>
-			<key>cdhash</key>
-			<data>
-			olAZoLsJN8kF2yxdu/E9XG3Pxq8=
-			</data>
-			<key>requirement</key>
-			<string>identifier BASE64 and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = Y69CWUC25B</string>
-		</dict>
 		<key>QuickLook/Thumbnail.png</key>
 		<dict>
 			<key>hash2</key>
@@ -305,18 +300,11 @@
 			7t2nF9u/4W05GOd8UQ7QAt/PFge16k3ydWYX/6ElmJk=
 			</data>
 		</dict>
-		<key>Windows/BASE64.4DX</key>
+		<key>Resources/manifest.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			gBo16a4loy72lZ90dkfT5tkKZY07MkxpcghQvsdYIIk=
-			</data>
-		</dict>
-		<key>Windows/BASE64.html</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			EKLRdLPtg+PsdxOrCPdnhlHZLbWCJYLapu/sbQTYgHg=
+			pJtXPoOj1vusayIzqmK2Gz1H68oOWgohnV/hV/ccfkk=
 			</data>
 		</dict>
 		<key>Windows64/BASE64.4DX</key>
@@ -325,22 +313,6 @@
 			<data>
 			sKV3PNMvnViIigaMJ01XJgKkvdq2wuxru/Q2hC4RLlQ=
 			</data>
-		</dict>
-		<key>Windows64/BASE64.html</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			EKLRdLPtg+PsdxOrCPdnhlHZLbWCJYLapu/sbQTYgHg=
-			</data>
-		</dict>
-		<key>manifest.json</key>
-		<dict>
-			<key>cdhash</key>
-			<data>
-			s+OS8zrQB1ZmDbW3tzUEanms8p0=
-			</data>
-			<key>requirement</key>
-			<string>identifier manifest and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = Y69CWUC25B</string>
 		</dict>
 	</dict>
 	<key>rules</key>
